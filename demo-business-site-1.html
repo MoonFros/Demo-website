@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amara's Kitchen — Fresh, Local, Made Daily</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#1F3D2B;
+    --forest-light:#2C5440;
+    --mustard:#D9A23B;
+    --paper:#F6EFE3;
+    --clay:#B5532E;
+    --ink:#232323;
+    --ink-soft:#5C5750;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;line-height:1.1;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--clay);
+    font-weight:700;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--paper);
+    border-bottom:1px solid rgba(35,35,35,0.08);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 24px;max-width:1120px;margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif;font-weight:700;font-size:1.3rem;
+    color:var(--forest);
+  }
+  .nav-links{display:flex;gap:28px;align-items:center;}
+  .nav-links a{font-size:0.92rem;font-weight:500;color:var(--ink);}
+  .nav-links a:hover{color:var(--clay);}
+  .btn-whatsapp{
+    background:var(--forest);color:var(--paper)!important;
+    padding:10px 18px;border-radius:100px;font-size:0.85rem;font-weight:600;
+    display:flex;align-items:center;gap:6px;
+    transition:background 0.2s;
+  }
+  .btn-whatsapp:hover{background:var(--forest-light);}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--forest);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:90px 24px 70px;
+    max-width:1120px;margin:0 auto;
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,5vw,3.6rem);
+    color:var(--forest);
+    margin:14px 0 18px;
+  }
+  .hero .underline{
+    display:inline-block;width:84px;height:10px;
+    margin-top:2px;
+  }
+  .hero p.lead{
+    font-size:1.08rem;color:var(--ink-soft);max-width:440px;margin-bottom:30px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--mustard);color:var(--forest);font-weight:700;
+    padding:14px 26px;border-radius:8px;font-size:0.95rem;
+    box-shadow:0 4px 0 rgba(31,61,43,0.18);
+    transition:transform 0.15s;
+  }
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{
+    border:1.5px solid var(--forest);color:var(--forest);font-weight:600;
+    padding:14px 26px;border-radius:8px;font-size:0.95rem;
+  }
+  .hero-art{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:18px;
+    overflow:hidden;
+    background-size:cover;
+    background-position:center;
+    box-shadow:0 18px 40px rgba(31,61,43,0.22);
+  }
+  .hero-art.img-hero{
+    background-image:linear-gradient(180deg,rgba(31,61,43,0) 40%,rgba(31,61,43,0.55) 100%),
+      url('https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80');
+  }
+  .hero-art.img-about{
+    background-image:url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=900&q=80');
+    box-shadow:0 14px 30px rgba(31,61,43,0.18);
+  }
+  .special-badge{
+    position:absolute;top:-18px;right:-14px;
+    background:var(--clay);color:var(--paper);
+    width:108px;height:108px;border-radius:50%;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transform:rotate(8deg);
+    font-family:'Space Mono',monospace;text-align:center;
+    box-shadow:0 6px 14px rgba(0,0,0,0.18);
+    z-index:5;
+  }
+  .special-badge .top{font-size:0.62rem;letter-spacing:0.05em;}
+  .special-badge .big{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:700;line-height:1;}
+
+  /* SECTION GENERIC */
+  section{padding:70px 24px;}
+  .section-head{max-width:560px;margin-bottom:44px;}
+  .section-head h2{font-size:clamp(1.8rem,3.2vw,2.4rem);color:var(--forest);margin-top:10px;}
+
+  /* MENU / SERVICES */
+  .menu-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  }
+  .menu-card{
+    background:#fff;border-radius:14px;padding:26px;
+    border:1px solid rgba(35,35,35,0.06);
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .menu-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(31,61,43,0.1);}
+  .menu-card .icon{font-size:1.8rem;margin-bottom:14px;}
+  .menu-card h3{font-size:1.15rem;color:var(--ink);margin-bottom:6px;}
+  .menu-card p{font-size:0.92rem;color:var(--ink-soft);margin-bottom:14px;}
+  .price-tag{
+    font-family:'Space Mono',monospace;font-weight:700;font-size:0.95rem;
+    color:var(--clay);
+  }
+
+  /* ABOUT STRIP */
+  .about{
+    background:var(--forest);color:var(--paper);
+  }
+  .about .wrap{
+    display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;
+  }
+  .about h2{color:var(--paper);}
+  .about p{color:rgba(246,239,227,0.82);margin-top:16px;font-size:1.02rem;max-width:460px;}
+  .facts{display:flex;gap:30px;margin-top:28px;}
+  .fact .num{font-family:'Fraunces',serif;font-size:2rem;font-weight:700;color:var(--mustard);}
+  .fact .label{font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(246,239,227,0.65);margin-top:4px;}
+
+  /* TESTIMONIALS */
+  .testimonials .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .quote{
+    background:#fff;border-radius:14px;padding:30px;
+    border-left:4px solid var(--mustard);
+  }
+  .quote p{font-size:1.02rem;color:var(--ink);margin-bottom:14px;font-style:italic;}
+  .quote .who{font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--ink-soft);}
+
+  /* CONTACT */
+  .contact{background:#fff;}
+  .contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  .contact-info p{color:var(--ink-soft);margin-bottom:18px;}
+  .info-row{display:flex;gap:12px;margin-bottom:16px;font-size:0.95rem;}
+  .info-row .ic{font-size:1.1rem;}
+  form{display:flex;flex-direction:column;gap:14px;}
+  form input,form textarea{
+    padding:14px 16px;border-radius:8px;border:1.5px solid rgba(35,35,35,0.14);
+    font-family:'Inter',sans-serif;font-size:0.95rem;background:var(--paper);
+  }
+  form input:focus,form textarea:focus{outline:2px solid var(--mustard);border-color:transparent;}
+  form button{
+    background:var(--forest);color:var(--paper);font-weight:600;
+    padding:14px;border:none;border-radius:8px;font-size:0.95rem;cursor:pointer;
+    transition:background 0.2s;
+  }
+  form button:hover{background:var(--forest-light);}
+  .form-note{font-size:0.8rem;color:var(--ink-soft);}
+
+  /* FOOTER */
+  footer{
+    background:var(--forest);color:rgba(246,239,227,0.7);
+    padding:36px 24px;text-align:center;font-size:0.85rem;
+  }
+  footer .logo{color:var(--paper);margin-bottom:8px;}
+
+  @media (max-width:840px){
+    .hero{grid-template-columns:1fr;padding-top:50px;}
+    .hero-art{order:-1;max-width:320px;margin:0 auto;}
+    .menu-grid{grid-template-columns:1fr;}
+    .about .wrap,.testimonials .wrap,.contact .wrap{grid-template-columns:1fr;}
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;background:var(--paper);
+      flex-direction:column;padding:18px 24px;gap:16px;
+      border-bottom:1px solid rgba(35,35,35,0.08);
+      display:none;
+    }
+    .nav-links.open{display:flex;}
+    .menu-toggle{display:block;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#" class="logo">Amara's Kitchen</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/2348000000000" class="btn-whatsapp">💬 WhatsApp Us</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="eyebrow">Local · Family-run · Est. 2023</span>
+    <h1>Real food,<br>made the way<br>your mother made it.</h1>
+    <svg class="underline" viewBox="0 0 84 10"><path d="M2 7C20 2 40 2 82 6" stroke="#D9A23B" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
+    <p class="lead">Amara's Kitchen serves fresh, home-style meals made daily from local ingredients — no shortcuts, no preservatives, just real cooking.</p>
+    <div class="hero-ctas">
+      <a href="#menu" class="btn-primary">See the menu</a>
+      <a href="#contact" class="btn-ghost">Book a table</a>
+    </div>
+  </div>
+  <div class="hero-art img-hero">
+    <div class="special-badge">
+      <span class="top">TODAY'S</span>
+      <span class="big">SPECIAL</span>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What we serve</span>
+      <h2>A few of our favorites</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="icon">🍲</div>
+        <h3>Signature Stew Pot</h3>
+        <p>Slow-cooked daily, served with your choice of rice, yam, or plantain.</p>
+        <span class="price-tag">₦2,500</span>
+      </div>
+      <div class="menu-card">
+        <div class="icon">🍗</div>
+        <h3>Grilled Plate</h3>
+        <p>Marinated overnight, grilled fresh to order with a side salad.</p>
+        <span class="price-tag">₦3,200</span>
+      </div>
+      <div class="menu-card">
+        <div class="icon">🥗</div>
+        <h3>Garden Bowl</h3>
+        <p>Fresh local vegetables, light dressing, perfect for a quick lunch.</p>
+        <span class="price-tag">₦1,800</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--mustard);">Our story</span>
+      <h2>Cooking with people in mind, not just plates.</h2>
+      <p>What started as a small kitchen serving neighbors has grown into a place people come back to every week. Every dish is made fresh that morning — nothing sits, nothing is reheated from yesterday.</p>
+      <div class="facts">
+        <div class="fact"><div class="num">3</div><div class="label">Years Running</div></div>
+        <div class="fact"><div class="num">100%</div><div class="label">Fresh Daily</div></div>
+        <div class="fact"><div class="num">6am</div><div class="label">Kitchen Opens</div></div>
+      </div>
+    </div>
+    <div class="hero-art img-about" style="aspect-ratio:1/1;"></div>
+  </div>
+</section>
+
+<section class="testimonials" id="reviews">
+  <div class="wrap" style="display:block;">
+    <div class="section-head">
+      <span class="eyebrow">What people say</span>
+      <h2>Trusted by regulars</h2>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="quote">
+      <p>"I order from here every week. The stew tastes like home, every single time."</p>
+      <div class="who">— Funke A., regular customer</div>
+    </div>
+    <div class="quote">
+      <p>"Fast, fresh, and the portions are generous. My go-to for lunch near the office."</p>
+      <div class="who">— Chidi O., regular customer</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-info">
+      <span class="eyebrow">Get in touch</span>
+      <h2 style="color:var(--forest);margin:10px 0 16px;font-size:1.9rem;">Book a table or place an order</h2>
+      <p>Reach out directly on WhatsApp for the fastest reply, or send a message below.</p>
+      <div class="info-row"><span class="ic">📍</span> 14 Sapele Road, Benin City</div>
+      <div class="info-row"><span class="ic">⏰</span> Open daily, 8am – 9pm</div>
+      <div class="info-row"><span class="ic">📞</span> +234 800 000 0000</div>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Thanks! This is a demo form — connect it to email or WhatsApp for a live site.');">
+      <input type="text" placeholder="Your name" required>
+      <input type="tel" placeholder="Phone number" required>
+      <textarea placeholder="What would you like to order or ask?" rows="4" required></textarea>
+      <button type="submit">Send message</button>
+      <span class="form-note">We usually reply within the hour.</span>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Amara's Kitchen</div>
+  <div>Demo site built by [Your Name] — Computer Engineering, UNIBEN</div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+</script>
+
+</body>
+</html>
